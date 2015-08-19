@@ -8,6 +8,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks("grunt-remove-logging");
+    grunt.loadNpmTasks('grunt-umd');
 
     var featureSources;
 
@@ -28,7 +29,6 @@ module.exports = function(grunt) {
         concat: {
             me: {
                 src: [
-                    'src/js/me-header.js',
                     'src/js/me-namespace.js',
                     'src/js/me-utility.js',
                     'src/js/me-plugindetector.js',
@@ -44,7 +44,6 @@ module.exports = function(grunt) {
             },
             mep: {
                 src: [
-                    'src/js/mep-header.js',
                     'src/js/mep-library.js',
                     'src/js/mep-player.js'
                 ].concat(featureSources || [
@@ -68,6 +67,34 @@ module.exports = function(grunt) {
                     'local-build/mediaelementplayer.js'
                 ],
                 dest: 'local-build/mediaelement-and-player.js'
+            }
+        },
+        umd: {
+            options: {
+                template: 'src/js/umd.hbs',
+                banner : require('fs').readFileSync('src/js/me-header.js', 'utf-8')
+            },
+            me: {
+                options: {
+                    moduleName: 'MediaElement',
+                    objectToExport: 'mejs.MediaElement',
+                    src: 'local-build/mediaelement.js'
+                }
+            },
+            mep: {
+                options: {
+                    moduleName: 'MediaElementPlayer',
+                    objectToExport: 'mejs.MediaElementPlayer',
+                    src: 'local-build/mediaelementplayer.js',
+                    banner: require('fs').readFileSync('src/js/mep-header.js', 'utf-8')
+                }
+            },
+            bundle: {
+                options: {
+                    moduleName: 'MediaElementPlayer',
+                    objectToExport: 'mejs.MediaElementPlayer',
+                    src: 'local-build/mediaelement-and-player.js'
+                }
             }
         },
         removelogging: {
@@ -190,7 +217,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['concat', 'removelogging', 'uglify', 'cssmin', 'copy',
+    grunt.registerTask('default', ['concat', 'removelogging', 'umd', 'uglify', 'cssmin', 'copy',
         'shell:buildFlash', 'shell:buildFlashCDN', 'shell:buildFlashDebug', 'clean:temp']);
 
     grunt.registerTask('html5only', ['concat', 'removelogging', 'uglify', 'cssmin', 'copy', 'clean:temp']);

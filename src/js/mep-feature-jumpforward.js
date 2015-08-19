@@ -7,7 +7,7 @@
 		jumpForwardText: mejs.i18n.t('Jump forward %1 seconds')
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildjumpforward: function(player, controls, layers, media) {
 			var
 				t = this,

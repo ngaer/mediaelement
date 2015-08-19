@@ -998,5 +998,6 @@ window.onYouTubePlayerReady = function(id) {
 	mejs.YouTubeApi.flashReady(id);
 };
 
-window.mejs = mejs;
-window.MediaElement = mejs.MediaElement;
+if (typeof isGlobal === 'boolean' && isGlobal) {
+	window.mejs = mejs;
+}

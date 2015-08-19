@@ -9,7 +9,7 @@
 		videoVolume: 'vertical'
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildvolume: function(player, controls, layers, media) {
 				
 			// Android and iOS don't support volume controls

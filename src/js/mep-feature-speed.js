@@ -13,7 +13,7 @@
 
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 
 		buildspeed: function(player, controls, layers, media) {
 			var t = this;

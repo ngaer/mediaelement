@@ -6,7 +6,7 @@
 	});
 
 	// progress/loaded bar
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildprogress: function(player, controls, layers, media) {
 
 			$('<div class="mejs-time-rail">' +

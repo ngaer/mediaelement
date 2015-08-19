@@ -66,7 +66,7 @@ $.extend(mejs.MepDefaults,
 );
 
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildcontextmenu: function(player, controls, layers, media) {
 			
 			// create context menu

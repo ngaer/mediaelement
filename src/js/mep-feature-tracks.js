@@ -21,7 +21,7 @@
 		slidesSelector: ''
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 
 		hasChapters: false,
 

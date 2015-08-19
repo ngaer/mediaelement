@@ -55,7 +55,7 @@
 		adsPrerollAdSkipSeconds: -1
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 	
 		// allows other plugins to all this one
 		adsLoaded: false,

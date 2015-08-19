@@ -1375,7 +1375,4 @@
 		});
 	}
 
-	// push out to window
-	window.MediaElementPlayer = mejs.MediaElementPlayer;
-
 })(mejs.$);

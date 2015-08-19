@@ -1,6 +1,6 @@
 (function($) {
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildplaylist : function(player, controls, layers, media) {
 			if (!player.isVideo)
 				return;

@@ -1,6 +1,6 @@
 (function($) {
 	// loop toggle
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildloop: function(player, controls, layers, media) {
 			var 
 				t = this,

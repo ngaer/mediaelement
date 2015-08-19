@@ -8,7 +8,7 @@
 	});
 
 	// Postroll
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildpostroll: function(player, controls, layers, media) {
 			var
 				t = this,

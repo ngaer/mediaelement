@@ -16,7 +16,7 @@ $.extend(mejs.MepDefaults, {
 });
 
 
-$.extend(MediaElementPlayer.prototype, {
+$.extend(mejs.MediaElementPlayer.prototype, {
 	buildgoogleanalytics: function(player, controls, layers, media) {
 			
 		media.addEventListener('play', function() {

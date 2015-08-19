@@ -8,7 +8,7 @@
 
 
 	// current and duration 00:00 / 00:00
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildcurrent: function(player, controls, layers, media) {
 			var t = this;
 			

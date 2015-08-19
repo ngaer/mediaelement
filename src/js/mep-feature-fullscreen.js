@@ -6,7 +6,7 @@
 		fullscreenText: mejs.i18n.t('Fullscreen')
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 
 		isFullScreen: false,
 

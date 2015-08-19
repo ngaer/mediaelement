@@ -7,7 +7,7 @@
 		skipBackText: mejs.i18n.t('Skip back %1 seconds')
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildskipback: function(player, controls, layers, media) {
 			var
 				t = this,

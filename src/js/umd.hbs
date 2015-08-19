@@ -1,0 +1,24 @@
+{{{banner}}}
+(function (root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD.
+		define({{#if moduleName}}'{{moduleName}}', {{/if}}[], function() {
+			return factory();
+		});
+	} else if (typeof exports === 'object') {
+		// Node. Does not work with strict CommonJS, but
+		// only CommonJS-like environments that support module.exports,
+		// like Node.
+		module.exports = factory();
+	} else {
+		{{#if moduleName}}root['{{{moduleName}}}'] = {{/if}}factory(true);
+	}
+}(this, function (isGlobal) {
+
+{{{code}}}
+
+{{#if objectToExport}}
+return {{{objectToExport}}};
+{{/if}}
+
+}));

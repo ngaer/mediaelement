@@ -1,6 +1,6 @@
 (function($) {
 
-	MediaElementPlayer.prototype.buildvisualcontrols = function(player, controls, layers, media) {
+	mejs.MediaElementPlayer.prototype.buildvisualcontrols = function(player, controls, layers, media) {
 		if (!player.isVideo)
 			return;
 

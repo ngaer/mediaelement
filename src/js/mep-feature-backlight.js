@@ -8,7 +8,7 @@
 		backlightTimeout: 200
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildbacklight : function(player, controls, layers, media) {
 			if (!player.isVideo)
 				return;

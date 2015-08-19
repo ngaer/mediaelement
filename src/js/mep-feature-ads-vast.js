@@ -9,7 +9,7 @@
 		vastAdTagUrl: ''
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildvast: function(player, controls, layers, media) {
 
 			var t = this;			

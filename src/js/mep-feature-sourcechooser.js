@@ -5,7 +5,7 @@
 		sourcechooserText: 'Source Chooser'
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildsourcechooser: function(player, controls, layers, media) {
 
 			var t = this;
