@@ -12,6 +12,22 @@
  * License: MIT
  *
  */
+(function (root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD.
+		define('MediaElement', [], function() {
+			return factory();
+		});
+	} else if (typeof exports === 'object') {
+		// Node. Does not work with strict CommonJS, but
+		// only CommonJS-like environments that support module.exports,
+		// like Node.
+		module.exports = factory();
+	} else {
+		root['MediaElement'] = factory(true);
+	}
+}(this, function (isGlobal) {
+
 // Namespace
 var mejs = mejs || {};
 
@@ -1851,8 +1867,9 @@ window.onYouTubePlayerReady = function(id) {
 	mejs.YouTubeApi.flashReady(id);
 };
 
-window.mejs = mejs;
-window.MediaElement = mejs.MediaElement;
+if (typeof isGlobal === 'boolean' && isGlobal) {
+	window.mejs = mejs;
+}
 
 /*
  * Adds Internationalization and localization to mediaelement.
@@ -2016,3 +2033,8 @@ window.MediaElement = mejs.MediaElement;
     }
 
 }(mejs.i18n.locale.strings));
+
+
+return mejs.MediaElement;
+
+}));

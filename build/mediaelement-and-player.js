@@ -12,6 +12,22 @@
  * License: MIT
  *
  */
+(function (root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD.
+		define('MediaElementPlayer', [], function() {
+			return factory();
+		});
+	} else if (typeof exports === 'object') {
+		// Node. Does not work with strict CommonJS, but
+		// only CommonJS-like environments that support module.exports,
+		// like Node.
+		module.exports = factory();
+	} else {
+		root['MediaElementPlayer'] = factory(true);
+	}
+}(this, function (isGlobal) {
+
 // Namespace
 var mejs = mejs || {};
 
@@ -1851,8 +1867,9 @@ window.onYouTubePlayerReady = function(id) {
 	mejs.YouTubeApi.flashReady(id);
 };
 
-window.mejs = mejs;
-window.MediaElement = mejs.MediaElement;
+if (typeof isGlobal === 'boolean' && isGlobal) {
+	window.mejs = mejs;
+}
 
 /*
  * Adds Internationalization and localization to mediaelement.
@@ -2017,18 +2034,6 @@ window.MediaElement = mejs.MediaElement;
 
 }(mejs.i18n.locale.strings));
 
-/*!
- *
- * MediaElementPlayer
- * http://mediaelementjs.com/
- *
- * Creates a controller bar for HTML5 <video> add <audio> tags
- * using jQuery and MediaElement.js (HTML5 Flash/Silverlight wrapper)
- *
- * Copyright 2010-2013, John Dyer (http://j.hn/)
- * License: MIT
- *
- */
 if (typeof jQuery != 'undefined') {
 	mejs.$ = jQuery;
 } else if (typeof Zepto != 'undefined') {
@@ -3424,9 +3429,6 @@ if (typeof jQuery != 'undefined') {
 		});
 	}
 
-	// push out to window
-	window.MediaElementPlayer = mejs.MediaElementPlayer;
-
 })(mejs.$);
 
 (function($) {
@@ -3437,7 +3439,7 @@ if (typeof jQuery != 'undefined') {
 	});
 
 	// PLAY/pause BUTTON
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildplaypause: function(player, controls, layers, media) {
 			var 
 				t = this,
@@ -3505,7 +3507,7 @@ if (typeof jQuery != 'undefined') {
 	});
 
 	// STOP BUTTON
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildstop: function(player, controls, layers, media) {
 			var t = this;
 
@@ -3540,7 +3542,7 @@ if (typeof jQuery != 'undefined') {
 	});
 
 	// progress/loaded bar
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildprogress: function(player, controls, layers, media) {
 
 			$('<div class="mejs-time-rail">' +
@@ -3830,7 +3832,7 @@ if (typeof jQuery != 'undefined') {
 
 
 	// current and duration 00:00 / 00:00
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildcurrent: function(player, controls, layers, media) {
 			var t = this;
 			
@@ -3911,7 +3913,7 @@ if (typeof jQuery != 'undefined') {
 		videoVolume: 'vertical'
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildvolume: function(player, controls, layers, media) {
 				
 			// Android and iOS don't support volume controls
@@ -4181,7 +4183,7 @@ if (typeof jQuery != 'undefined') {
 		fullscreenText: mejs.i18n.t('Fullscreen')
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 
 		isFullScreen: false,
 
@@ -4681,7 +4683,7 @@ if (typeof jQuery != 'undefined') {
 
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 
 		buildspeed: function(player, controls, layers, media) {
 			var t = this;
@@ -4804,7 +4806,7 @@ if (typeof jQuery != 'undefined') {
 		slidesSelector: ''
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 
 		hasChapters: false,
 
@@ -5551,7 +5553,7 @@ $.extend(mejs.MepDefaults,
 );
 
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildcontextmenu: function(player, controls, layers, media) {
 			
 			// create context menu
@@ -5689,7 +5691,7 @@ $.extend(mejs.MepDefaults,
 		skipBackText: mejs.i18n.t('Skip back %1 seconds')
 	});
 
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildskipback: function(player, controls, layers, media) {
 			var
 				t = this,
@@ -5722,7 +5724,7 @@ $.extend(mejs.MepDefaults,
 	});
 
 	// Postroll
-	$.extend(MediaElementPlayer.prototype, {
+	$.extend(mejs.MediaElementPlayer.prototype, {
 		buildpostroll: function(player, controls, layers, media) {
 			var
 				t = this,
@@ -5747,3 +5749,7 @@ $.extend(mejs.MepDefaults,
 	});
 
 })(mejs.$);
+
+return mejs.MediaElementPlayer;
+
+}));
